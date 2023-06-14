@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <record id="test_tree" model="ir.ui.view">
+            <field name="name">tree.test</field>
+            <field name="model">test.test</field>
+            <field name="arch" type="xml">
+                <tree string="Test modules">
+                    <field name="name"/>
+                    <field name="value"/>
+                    <field name="value2"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+      
+        <record id="test_action" model="ir.actions.act_window">
+            <field name="name">Test modules</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">test.test</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p>Create your first tree view!</p>
+            </field>
+        </record>
+
+    <menuitem name="new_modules" id="new_modules.menu_root" sequence="8"/>
+    <menuitem name="Menu 1" id="new_modules.menu_1" parent="new_modules.menu_root" sequence="2"/>
+    <menuitem name="Menu 2" id="new_modules.menu_2" parent="new_modules.menu_1" sequence="2"/>
+    <menuitem name="Menu 3" id="new_modules.menu_3" parent="new_modules.menu_1" sequence="5" action="test_action"/>
+    </data>
+</odoo>
