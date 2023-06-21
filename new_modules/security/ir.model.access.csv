@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_test,Test modules,model_test_test,,1,1,1,1
+access.student.info,access_student_info,new_modules.model_student_info,,1,1,1,1
+access.book.book,access_book_book,new_modules.model_book_book,,1,1,1,1
+access.book.order,access_book_order,new_modules.model_book_order,,1,1,1,1
+access.order.report,access_order_report,new_modules.model_order_report,,1,1,1,1

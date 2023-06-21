@@ -1,0 +1,174 @@
+<odoo>
+
+    <!-- Tree view -->
+    <record id="Student_tree" model="ir.ui.view">
+        <field name="name">Student Tree</field>
+        <field name="model">student.info</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Student">
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="student_types" widget="badge" decoration-info="student_types == 'associate'" 
+                    decoration-success="student_types == 'bachelor'" decoration-warning= "student_types == 'master'" decoration-danger="student_types == 'phd'" />
+                <field name="image" widget="image" options='{"size": [50,50]}'/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!-- Form view -->
+    <record id="Student_form" model="ir.ui.view">
+        <field name="name">Student Info Form </field>
+         <field name="model">student.info</field>
+         <field name="arch" type="xml">
+            <form string="Student Info" js_class="hr_employee_form" class="o_employee_form">
+                <header>
+                    <button name="action_test" id="button_test" string="Bachelor" class="oe_highlight" attrs="{'invisible':[('student_types','!=','associate')]}" type="object"/>
+                    <field name="student_types" widget="statusbar" options="{'clickable':'1'}"/>
+                </header>
+                <sheet>
+                     <div class="oe_button_box" name="button_box">
+                        <button name="action_test2"
+                            class="oe_stat_button"
+                            icon="fa-meh-o"
+                            type="object">
+                            <field name="button_age" widget="statinfo" string="Active/Aways" options="{'reload_on_button': true}"/>
+                            </button>
+                    </div>
+                    <group>
+                        <group>
+                        <field name="name" nolabel="1" placeholder="Student Name" /><br/>
+                        <field name="email" nolabel="1" widget='email' placeholder="email"/><br/>
+                        <field name="phone" widget="phone" nolabel="1" placeholder="phone"/>
+                        </group>
+                        <group>
+                        <field name="image" position="attribute" widget="image" class="oe_avatar" nolabel="1" />
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="nrc"/>
+                        <!--<field name="phone" widget="phone"/>-->
+                            <field name="gender" position="attributes" widget="radio">
+                                     <attribute name="string">Gender</attribute>
+                            </field>
+                            <field name="age"/>
+                        </group>
+                        <group>
+                            <field name="nationality"  widget="badges" position="attributes">
+                                <attribute name="string">Nationality</attribute>
+                            </field>
+                            <field name="address" position="attributes">
+                                <attribute name="string">Address</attribute>
+                            </field>
+                            <field name="education" position="attributes">
+                                <attribute name="string">Education</attribute>
+                                </field>
+                        </group>
+                    </group>
+                    <notebook>
+                         <page name="public" string="Work Information">
+                            <field name="dob" position="attributes" widget="date">
+                                    <attribute name="string" position="attribute">Date of Birth</attribute>
+                            </field>
+                         </page>
+                    </notebook>
+                </sheet>
+
+                <!-- Chatter -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_follower"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                <!-- End Chatter -->
+            </form>
+         </field>
+     </record>
+
+    
+    <!-- Kanban View -->
+
+    <record id="Student_kanban" model="ir.ui.view">
+            <field name="name">Student Kanban</field>
+            <field name="model">student.info</field>
+            <field name="arch" type="xml">
+            <kanban default_group_by="student_types" default_order="student_types" records_draggable="true" class="o_hr_employee_kanban" js_class="hr_employee_kanban" sample="1">
+                   <field name="id"/>
+                   <field name="name"/>
+                   <field name="phone"/>
+                   <field name="email"/>
+                   <field name="address"/>
+                   <field name="image"/>
+                   <field name="student_types"/>
+                   <progressbar field="student_types" default_order="student_types" colors='{"associate":"info","bachelor":"success","master":"warning","phd":"danger"}'/>
+                   <templates>
+                       <t t-name="kanban-box">
+                       <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_hr_kanban_record">
+                           <field name="image" widget="image" class="o_kanban_image_fill_left" options="{'zoom': true, 'zoom_delay': 1000, 'background': true, 'preventClicks': false}"/>
+
+                            <div class="oe_kanban_details">
+                               <div class="o_kanban_record_top">
+                                   <div class="o_kanban_record_headings">
+                                       <strong class="o_kanban_record_title">
+                                        <field name="name" placeholder="Employee's Name"/>
+                                       </strong><br/>
+                                       <span><field name="phone"/></span><br/>
+                                       <field name="address"/>
+                                   </div>
+                               </div>
+                               <field name="email"/>
+                           </div>
+                        </div>
+                       </t>
+                   </templates>
+               </kanban>
+           </field>
+       </record>
+
+       <!-- pivot view -->
+
+       <record id="Student_pivot_view" model="ir.ui.view">
+        <field name="name">Student Pivot</field>
+        <field name="model">student.info</field>
+        <field name="arch" type="xml">
+            <pivot string="Student Report" display_quantity="1" sample="1">
+                <field name="name" type="row"/>
+                <field name="email" type="row"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Graph view -->
+    <record id="view_graph_enroll" model="ir.ui.view"> 
+    <field name="model">student.info</field>
+    <field name="arch" type="xml"> 
+        <graph type="bar">
+            <field name="name" />
+            <field name="age" type="measure" />
+        </graph>
+    </field>
+    </record> 
+
+    <!-- Action -->
+    <record id="action_student_info" model="ir.actions.act_window">
+        <field name="name">Student Info</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">student.info</field>
+        <field name="view_mode">kanban,tree,form,pivot,graph</field>
+
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create first Record!!
+            </p>
+        </field>
+    </record>
+
+            
+    <!-- Menu -->
+    <menuitem id="waaneiza_root" name="Wanneiza" sequence="3">
+    </menuitem>
+    <menuitem id="student_info" name="Student" parent="waaneiza_root" action="action_student_info"/>
+</odoo>

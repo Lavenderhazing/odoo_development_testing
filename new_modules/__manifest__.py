@@ -19,14 +19,17 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base','mail','website'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-        'views/test2.xml',
+        'views/student_info_view.xml',
+        'views/book_info_view.xml',
+        'views/book_order_view.xml',
+        'views/order_report_view.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
