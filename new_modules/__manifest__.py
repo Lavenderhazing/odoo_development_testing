@@ -30,7 +30,9 @@
         'views/book_info_view.xml',
         'views/book_order_view.xml',
         'views/order_report_view.xml',
+        'report/report_student_info.xml',
     ],
+
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',

@@ -56,5 +56,6 @@
     <menuitem name="Server to list" id="new_modules" parent="new_modules.menu_2"
               action="new_modules.action_server"/>
 -->
+
   </data>
 </odoo>

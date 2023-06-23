@@ -1,36 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="student_pages" name="Student Info">
-        <t t-call="website.layout">
-            <div class="oe_structure">
-                <div class="container"><br />
-                    <center>
-                        <h3>Student Info</h3>
-                    </center><br />
-                    <table class="table-striped table">
-                        <thead style="font-size: 23px;">
-                            <tr>
-                                <h6><b>
-                                        <th>Name</th>
-                                        <th>Age</th>
-                                        <th>Email</th>
-                                        <th><b>Phone</b></th>
-                                    </b></h6>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <t t-foreach="records" t-as="order">
-                                <tr>
-                                    <td><span t-esc="order.name" /></td>
-                                    <td><span t-esc="order.age" /></td>
-                                    <td><span t-esc="order.email" /></td>
-                                    <td><span t-esc="order.phone" /></td>
-                                </tr>
-                            </t>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </t>
-    </template>
+	<template id="student_pages" name="student Info">
+		<t t-call="website.layout">
+			<div class="oe_structure">
+				<div class="container">
+					<center>
+						<h3>Student Info</h3>
+					</center>
+					<table class="table-striped table">
+						<thead>
+							<tr>
+								<h6>
+									<b>
+										<th>Name</th>
+										<th>Age</th>
+										<th>Email</th>
+										<th>Phone</th>
+									</b>
+								</h6>
+							</tr>
+						</thead>
+						<tbody>
+							<t t-foreach="record" t-as="stu">
+								<tr>
+									<td><span t-esc="stu.name"/></td>
+									<td><span t-esc="stu.age"/></td>
+									<td><span t-esc="stu.email"/></td>
+									<td><span t-esc="stu.phone"/></td>
+								</tr>
+							</t>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</t>
+	</template>
 </odoo>

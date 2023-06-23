@@ -1,0 +1,47 @@
+<odoo>
+	<template id="report_student_info">
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="web.external_layout">
+					<div class="page">
+						<div>
+							<center>
+								<h2>Student Information</h2>
+							</center>
+						</div>
+						<table class="table table-sm table-bordered">
+							<tr>
+								<td>
+									<strong>Studnt Name</strong>
+								</td>
+								<td>
+									<span t-field="o.name"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>Age</strong>
+								</td>
+								<td>
+									<span t-field="o.age"/>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</t>
+			</t>
+		</t>
+	</template>
+
+
+	<record id="action_report_student_info" model="ir.actions.report">
+		<field name="name"> Student Info</field>
+		<field name="model">student.info</field>
+		<field name="report_type">qweb-pdf</field>
+		<field name="report_name">new_modules.report_student_info</field>
+		<field name="report_file">new_modules.report_student_info</field>
+		<field name="print_report_name">'Student - %s -%s' %(object.id, (object.name).replace('/',''))</field>
+		<field name="binding_model_id" ref="model_student_info"/>
+		<field name="binding_type">report</field>
+	</record>
+</odoo>
